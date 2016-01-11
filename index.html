@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="gemStore">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <body  >
+        <div ng-controller="NomController as titre">
+            <h1>{{titre.lesnoms.nom}} {{titre.lesnoms.prenom}}</h1>
+        </div>
+        <div ng-controller="StoreController as store">        
+    <div class="product row">
+      
+        
+         <h3>{{store.product.name}}
+        
+        <em class="pull-right">{{store.product.price}}€</em>
+      </h3>
+        <span>{{store.product.descriptif}}</span><br>
+<button ng-show="store.product.canPurchase">Add to Cart</button>
+    </div></div>
+    </body>
+</html>
