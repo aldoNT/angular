@@ -12,20 +12,42 @@ and open the template in the editor.
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <body  >
-        <div ng-controller="NomController as titre">
-            <h1>{{titre.lesnoms.nom}} {{titre.lesnoms.prenom}}</h1>
+     <body class="list-group" ng-controller="StoreController as store">
+    <!--  Product Container  -->
+    <div class="list-group-item" ng-repeat="product in store.products">
+      <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+<span>{{product.description}}</span>
+<table class="tab">
+    <tr><td class="tdtabB">Brillance</td><td class="tdtabB">Rareté</td><td class="tdtabB">Face</td><td class="tdtabB">Couleur</td></tr>
+    <tr><td class="tdtab">{{product.shine}}</td><td class="tdtab">{{product.rarity}}</td><td class="tdtab">{{product.faces}}</td><td class="tdtab" style="background-color:{{product.color}} ">...</td></tr>
+    
+    
+</table>
+      <!-- Image Gallery  -->
+      <div class="gallery" ng-show="product.images.length">
+        <div class="img-wrap">
+          <img ng-src="{{product.images[0]}}" />
         </div>
-        <div ng-controller="StoreController as store">        
-    <div class="product row" ng-hide='store.product.soldOut'>
-      
-        
-         <h3>{{store.product.name}}
-        
-        <em class="pull-right">{{store.product.price}}€</em>
-      </h3>
-        <span>{{store.product.descriptif}}</span><br>
-<button ng-show="store.product.canPurchase">Add to Cart</button>
-    </div></div>
-    </body>
+        <ul class="img-thumbnails clearfix">
+          <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+            <img ng-src="{{image}}" />
+          </li>
+        </ul>
+      </div>
+      <hr style="width:100%; height:1px;" /> 
+      <h5>Commentaires:</h5>
+      <div ng-repeat="rewiew in product.reviews">
+        <hr style="width:100%; height:1px;" /> 
+         {{rewiew.body}} <br> {{rewiew.author}}<br>
+         {{rewiew.createdOn | date:'dd/MM/yyyy'}}<br>
+         <ANY ng-switch="{{rewiew.stars}}">
+            <ANY ng-switch-when="1"><span class="starG">*</span><span class="starf">****</ANY>
+  <ANY ng-switch-when="2"><span class="starG">**</span><span class="starf">***</ANY>
+  <ANY ng-switch-when="3"><span class="starG">***</span><span class="starf">**</ANY>
+  <ANY ng-switch-when="4"><span class="starG">****</span><span class="starf">*</ANY>
+  <ANY ng-switch-when="5"><span class="starG">*****</span></ANY>
+  </ANY>
+      </div>
+    </div>
+  </body>
 </html>
